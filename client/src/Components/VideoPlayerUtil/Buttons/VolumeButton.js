@@ -25,14 +25,14 @@ export default class VolumeButton extends React.Component {
         let pos = this.selectRef.current.getBoundingClientRect();
 
         let x = Math.floor(pos.x);
-        console.log(x)
+        //console.log(x)
 
         let width = pos.width;
-        console.log(width)
+        //console.log(width)
 
         let cursorX = event.clientX;
         let progress = parseFloat((cursorX - x) / width);
-        console.log(progress);
+        //console.log(progress);
         //add position boundary condition
         if (progress <= 1 && progress >= 0) {
             //move the bar and point
@@ -80,6 +80,7 @@ export default class VolumeButton extends React.Component {
         const volumeContainerStyle = {
             display: 'flex',
             alignItems: 'center',
+            marginRight: "10px"
         }
         const progressBarContainerStyle = {
             width: "50px",

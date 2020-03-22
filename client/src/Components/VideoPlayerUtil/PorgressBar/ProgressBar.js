@@ -9,9 +9,11 @@ class ProgressBar extends React.Component {
         this.isMouseDown = false;
         this.handleMouseDown = this.handleMouseDown.bind(this);
         this.handleMouseMove = this.handleMouseMove.bind(this);
+
         this.updateProgress = this.updateProgress.bind(this);
         this.handleClickProgressBar = this.props.handleClickProgressBar;
-
+        this.handleProgressBarTimeShowMove = this.props.handleProgressBarTimeShowMove;
+        this.stopDisplayTimeBox = this.props.stopDisplayTimeBox;
     }
 
     updateProgress(event, shouldUpdate) {
@@ -38,6 +40,16 @@ class ProgressBar extends React.Component {
     handleMouseMove(event) {
         if (this.isMouseDown) {
             this.updateProgress(event, false);
+            this.stopDisplayTimeBox();
+        } else {
+            let progressBar = document.getElementById("progress-bar")
+            let progressPoint = document.getElementById("draggable-point")
+            let pos = this.selectRef.current.getBoundingClientRect();
+            let x = Math.floor(pos.x);
+            let width = pos.width;
+            let cursorX = event.clientX;
+            let progress = parseFloat((cursorX - x) / width);
+            this.handleProgressBarTimeShowMove(cursorX, progress);
         }
     }
 
@@ -48,7 +60,8 @@ class ProgressBar extends React.Component {
 
     componentDidMount() {
         this.currentProgess = this.props.progress;
-        console.log("fuck")
+        document.getElementById('draggable-point').ondragstart = function () { return false; };
+        document.getElementById('audio-progress-handle').ondragstart = function () { return false; };
     }
 
     shouldComponentUpdate(nextProps) {
@@ -62,12 +75,7 @@ class ProgressBar extends React.Component {
 
     render() {
         if (this.currentProgress == undefined) this.currentProgress = 0;
-        // const progressBarContainerStyle = {
-        //     width: "100%",
-        //     height: "5px",
-        //     backgroundColor: "#e1e1e1",
-        //     borderRadius: "20px",
-        // }
+
         const progressBarStyle = {
             display: "block",
             width: this.currentProgress + "%",
@@ -77,20 +85,22 @@ class ProgressBar extends React.Component {
         }
         return (
             <div onMouseDown={this.handleMouseDown} onMouseMove={this.handleMouseMove}
-                onMouseUp={() => this.isMouseDown = false}
-                onMouseLeave={() => this.isMouseDown = false}>
-                <div id="progress-bar-container" ref={this.selectRef}
-                // onMouseDown={this.handleMouseDown}
-                // onMouseMove={this.handleMouseMove}
-                // onMouseUp={() => this.isMouseDown = false}
-                // onMouseLeave={() => this.isMouseDown = false}
-                //style={progressBarContainerStyle}
-                >
-                    <div id="draggable-point" style={{ left: this.currentProgress + "%", position: "relative", draggable: "false" }} className="draggable ui-widget-content">
-                        <div id="audio-progress-handle"></div>
-                    </div>
-                    <span id="progress-bar" style={progressBarStyle}></span>
+                onMouseUp={() => {
+                    this.isMouseDown = false
+                    this.stopDisplayTimeBox();
+                }}
+                onMouseLeave={() => {
+                    this.isMouseDown = false
+                    this.stopDisplayTimeBox();
+                }} id="progress-bar-container">
 
+                <div id="progress-bar-all" ref={this.selectRef}>
+                    <div id="progress-bar-all2">
+                        <div id="draggable-point" style={{ left: this.currentProgress + "%", position: "relative" }} className="draggable ui-widget-content" draggable="false">
+                            <div id="audio-progress-handle"></div>
+                        </div>
+                        <span id="progress-bar" style={progressBarStyle}></span>
+                    </div>
                 </div>
             </div>
 

@@ -39,10 +39,11 @@
 
 .video-list-item:hover{
   background-color: "#e1e1e1" !important;
+  cursor: pointer;
+
 }
 
 .video-text:hover{
   color: "#ffffff";
-  cursor: pointer;
 
 }
