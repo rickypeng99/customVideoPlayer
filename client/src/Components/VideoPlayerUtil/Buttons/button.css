@@ -1,0 +1,16 @@
+.button:hover {
+    cursor: pointer;
+   
+}
+
+.button {
+    margin-right: 10px;
+
+}
+.list_item{
+    width: 100%;
+    text-align: center
+}
+.list_item:hover{
+    background-color: rgba(214, 214, 214, 0.8)
+}

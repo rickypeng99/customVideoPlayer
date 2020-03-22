@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.video-list-item:hover{
+  background-color: "#e1e1e1" !important;
+}
+
+.video-text:hover{
+  color: "#ffffff";
+  cursor: pointer;
+
+}
