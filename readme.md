@@ -1,7 +1,7 @@
 ## Take-home project submission for ign code foo 2020
 
 ## Cover letter
-I am always a fan of ign since a long time ago. I followed a lot of gaming news, and especially those critics and comments on new games. I use ign views as important metrics to decide if I should spend time on a game or not. However, I only happened to notice the Code Foo intership program a few days before the deadline of application, so I rush made a frontend example that has the basic functionalities. 
+I am always a fan of ign since a long time ago. I followed a lot of gaming news, and especially those critics and comments on new games. I use ign reviews as important metrics to decide if I should spend time on a game or not. However, I only happened to notice the Code Foo intership program a few days before the deadline of application, so I rush made a frontend example that has the basic functionalities. 
 
 This project is based on React.
 
@@ -10,8 +10,15 @@ A bit of intro to myself: I am a statistics and computer science junior at the U
 ## Basic functionalities
 
 ### Video player
-Some details:  
 I used the HTML5 video api to make a simple video control that has functionalities such as progress bar (drag, onClick), play button, current time showing on hover, resolution change, and full screen.   
+
+![Video player](./screenshots/videoPlayer.png)
+
+
+### Video list
+![Video player](./screenshots/videoList.png)
+
+### Proxy backend
 I also used a proxy node.js backend to solve the cross-origin issue to retrieve data from the IGN api.  
 
 ## How to run

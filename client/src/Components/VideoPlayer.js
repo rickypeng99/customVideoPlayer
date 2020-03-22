@@ -240,6 +240,7 @@ class VideoPlayer extends React.Component {
             zIndex: "3",
             top: "100",
             backgroundColor: "rgba(0,0,0,0.5)",
+            borderRadius: "20px",
             textAlign: "center"
         }
 
