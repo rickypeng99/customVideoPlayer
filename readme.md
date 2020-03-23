@@ -1,5 +1,10 @@
 ## Take-home project submission for ign code foo 2020
 
+## Algorithm question's solution and explanation:
+
+The algorithm question's solution and explanation are in the `algorithmSolution` folder. Thanks
+
+
 ## How to run
 
 use `node server.js` at the root to start the backend  
