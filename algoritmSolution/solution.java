@@ -30,9 +30,9 @@ public class IgnAlgo {
                 if (i - duration[j] == startDate[j]) {
                     int max = 0;
                     int[] maxIndex = new int[2];
-                    
+
                     //find all previous max combo
-                    for (int k = 0; k != j && k < memo[i].length; k++) {
+                    for (int k = 0; k < memo[i].length; k++) {
                         for(int z = 0; z <= startDate[j]; z++){
                             if (memo[z][k] > max) {
                                 max = memo[z][k];
@@ -50,7 +50,7 @@ public class IgnAlgo {
             }
 
         }
-        
+
         //-----tracing the answers
         int max = 0;
         int[] maxTrace = new int[2];
@@ -74,8 +74,8 @@ public class IgnAlgo {
             now = trace[dateIndex][questIndex];
         }
         //----end tracing the answers
-        
-        
+
+
         return max;
     }
 }

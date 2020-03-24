@@ -3,7 +3,7 @@
 The code is in the `solution.java` file at the root, I used java to do this algorithm problem  
 The solution is down below:  
 
-![Solution](../screenshots/solution.png)
+![Solution](../screenshots/solution.jpg)
 
 The algorithm that I use is a `O((31)^2*n^2) = O(n^2)` algorithm, for n denotes the number of quests, I view the number of days, which is 31, as a constant here, if not, then the algorithm should be `O(n^2k^2)` for n denotes the number of days annd k denotes number of quests.
 
