@@ -6,9 +6,8 @@ The algorithm question's solution and explanation are in the `algorithmSolution`
 
 
 ## How to run
-
-use `node server.js` at the root to start the backend  
-use `npm start` in the `/client` folder to start the frontend  
+use `node server.js` at the root to start the backend (be sure tp run with `npm install` first in this folder!)  
+use `npm start` in the `/client` folder to start the frontend  (be sure tp run with `npm install` first at the root as well!)   
 
 
 ## Cover letter
@@ -19,6 +18,11 @@ This project is based on React.
 A bit of intro to myself: I am a statistics and computer science junior at the University of Illinoise at Urbana-Champaign, my main focus in the software development fields is web development. I enjoy it because of the feeling of how every line of codes that I wrote changes the design and functionality of the website (due to hot loading). 
 
 ## Basic functionalities
+
+### Basic view
+![Baic view](./screenshots/full.jpg)
+
+
 
 ### Video player
 I used the HTML5 video api to make a simple video control that has functionalities such as progress bar (drag, onClick), play button, current time showing on hover, resolution change, and full screen.   
