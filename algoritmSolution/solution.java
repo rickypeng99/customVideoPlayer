@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class IgnAlgo {
     public static void main(String[] args) {
 
@@ -19,63 +21,30 @@ public class IgnAlgo {
     public static int maxRupee(int[] startDate, int[] duration, int[] rupees) {
         int questAmount = startDate.length;
         int days = 31; // how many days in total
-        int[][] memo = new int[days + 1][questAmount];
-        int[][][] trace = new int[days + 1][questAmount][2];
-        //i denotes currentDate
-        for (int i = 1; i < memo.length; i++) {
-            //j denotes questIndex
-            for (int j = 0; j < memo[i].length; j++) {
-
-                //if able
-                if (i - duration[j] == startDate[j]) {
-                    int max = 0;
-                    int[] maxIndex = new int[2];
-
-                    //find all previous max combo
-                    for (int k = 0; k < memo[i].length; k++) {
-                        for(int z = 0; z <= startDate[j]; z++){
-                            if (memo[z][k] > max) {
-                                max = memo[z][k];
-                                maxIndex[0] = z;
-                                maxIndex[1] = k;
-                            }
+        int[] endDays = new int[questAmount];
+        //create endDays array to record the ending date of all quests
+        for(int i = 0; i < endDays.length; i++) {
+            endDays[i] = startDate[i] + duration[i];
+        }
+        int[] memo = new int[days + 1];
+        ArrayList<Integer> trace = new ArrayList<>();
+        for(int i = 1; i < memo.length; i++){
+            //max amout of rupees earned on ith day
+            int max = 0;
+            int maxIndex = -1;
+            for(int j = 0; j < questAmount; j++){
+                if(endDays[j] == i){
+                    for(int k = 0; k <= startDate[j]; k++) {
+                        int newAmount = memo[startDate[j]] + rupees[j];
+                        if (newAmount > max) {
+                            max = newAmount;
                         }
                     }
-                    memo[i][j] = max + rupees[j];
-                    trace[i][j] = maxIndex;
-                } else {
-                    memo[i][j] = 0;
-                }
 
-            }
-
-        }
-
-        //-----tracing the answers
-        int max = 0;
-        int[] maxTrace = new int[2];
-        for (int i = 1; i < memo.length; i++) {
-            //j denotes questIndex
-            for (int j = 0; j < memo[i].length; j++) {
-                //System.out.print(memo[i][j]);
-                if(max < memo[i][j]){
-                    max = memo[i][j];
-                    maxTrace[0] = i;
-                    maxTrace[1] = j;
                 }
             }
+            memo[i] = Math.max(max, memo[i - 1]);
         }
-
-        int[] now = maxTrace;
-        while(now[0] > 0){
-            int dateIndex = now[0];
-            int questIndex = now[1];
-            System.out.println("startDate: " + startDate[questIndex] + " duration: " + duration[questIndex] + " reward: " + rupees[questIndex]);
-            now = trace[dateIndex][questIndex];
-        }
-        //----end tracing the answers
-
-
-        return max;
+        return memo[31];
     }
 }

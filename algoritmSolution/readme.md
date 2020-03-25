@@ -1,12 +1,12 @@
 ## Algorithm question's solution and explanation:
 
 The code is in the `solution.java` file at the root, I used java to do this algorithm problem  
-The solution is down below:  
+The solution is (for the sample quest board is):  
 
-![Solution](../screenshots/solution.jpg)
+Link can earn 5970 rupees in maximum in a month
 
-The algorithm that I use is a `O((31)^2*n^2) = O(n^2)` algorithm, for n denotes the number of quests, I view the number of days, which is 31, as a constant here, if not, then the algorithm should be `O(n^2k^2)` for n denotes the number of days annd k denotes number of quests.
+The algorithm that I use is a `O((31)^2*n) = O(n)` algorithm, for n denotes the number of quests, I view the number of days, which is 31, as a constant here, if not, then the algorithm should be `O(n^2k)` for n denotes the number of days annd k denotes number of quests.
 
-I used dynamic programming approach, for which I used a 2d array to store the imtermidiate result. `memo[i][j]` denotes that on ith day, if the jth quest is done, what is the current maximum rupees earned. For every `memo[i][j]`, it equals to the `rupees[j]` + the max value of all `memo[a][b]` where `a <= i - durations[j]`, which denotes the max values of rupees Link can earn before completing the current quest.
+I used dynamic programming approach, for which I used a 1d array to store the imtermidiate result. `memo[i]` denotes that on ith day, what is the current maximum rupees earned. For every `memo[i]`, it equals to the max value between `momo[i - 1]` and the maximum sum of `rupees[j]` + the max value of all `memo[a]` where `a <= startDate[j]` where `endDate[j] == i`. In short, Link either earns nothing on a day since there isn't any quest ended, or he can possibly earn more from the quest ended on that day, which will be added to the max value from the rupees he earned before the starting date of that quest
 
-After the traversal, I return the max value in `memo`. I also added a feature that can show the particular quests Link can do to maximize the rupees, for which I use a 3d array, where it is indexed similarly as `memo`, but each value represents a pair of indexes that connects to a previous quest.
+After the traversal, I return the `memo[31]`, for it denoting the max rupees that Link can earn in 31 days. 
